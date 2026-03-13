@@ -1,11 +1,3 @@
-void setupAnalogFilters(){
-    // Select the correct ADC resolution
-  FilteredAnalog<>::setupADC();
-  analog0.resetToCurrentValue();
-  analog1.resetToCurrentValue();
-  analog2.resetToCurrentValue();
-}
-
 void checkAnalogPorts(){
 
    if(analog0.update() && enablePot0){

@@ -1,20 +1,3 @@
-void setMidiHandlers(){
-    MIDI.setHandleNoteOn(handleNoteOn);  // Put only the name of the function
-  usbMIDI.setHandleNoteOn(handleNoteOn);
-
-  MIDI.setHandleControlChange(handleControlChange);
-  usbMIDI.setHandleControlChange(handleControlChange);
-
-    // Do the same for NoteOffs
-  MIDI.setHandleNoteOff(handleNoteOff);
-  usbMIDI.setHandleNoteOff(handleNoteOff);
-
-    // Initialize MIDI, and listen to all MIDI channels
-  // This will also call usb_midi's begin()
-  MIDI.begin(MIDI_CHANNEL_OMNI);
-  usbMIDI.begin(MIDI_CHANNEL_OMNI);
-}
-
 void handleNoteOn(byte channel, byte pitch, byte velocity) {
   // Do whatever you want when a note is pressed.
 
