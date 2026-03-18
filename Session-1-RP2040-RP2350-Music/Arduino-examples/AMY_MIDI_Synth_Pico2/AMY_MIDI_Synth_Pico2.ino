@@ -1,5 +1,7 @@
 #include <AMY-Arduino.h>
 
+//#define LED_BUILTIN 3 //for PicoSynth
+
 bool enable_chorus = false;
 bool enable_echo = false;
 bool enable_reverb = true;
@@ -57,8 +59,8 @@ void setup() {
   amy_config.i2s_din = 11;
 
   // If you want MIDI over UART (5-pin or 3-pin serial MIDI)
-  //amy_config.midi = AMY_MIDI_IS_UART;
-  amy_config.midi = AMY_MIDI_IS_USB_GADGET;
+  amy_config.midi = AMY_MIDI_IS_UART;
+  //amy_config.midi = AMY_MIDI_IS_USB_GADGET;
 
   // Pins for UART MIDI
   amy_config.midi_out = 4;

@@ -96,15 +96,15 @@ void setup() {
   Serial.println("PicoTouch");
   }
 
-  MIDI.setHandleNoteOn(handleNoteOn);  // Put only the name of the function
-  MIDI.setHandleNoteOff(handleNoteOff);
-  MIDI.setHandleProgramChange(handleProgramChange);
+  //MIDI.setHandleNoteOn(handleNoteOn);  // Put only the name of the function
+  //MIDI.setHandleNoteOff(handleNoteOff);
+  //MIDI.setHandleProgramChange(handleProgramChange);
   MIDI.setHandleControlChange(handleControlChange);
 
   
-  usbMIDI.setHandleNoteOn(handleNoteOnUSB);
-  usbMIDI.setHandleNoteOff(handleNoteOffUSB);
-  usbMIDI.setHandleProgramChange(handleProgramChangeUSB);
+  //usbMIDI.setHandleNoteOn(handleNoteOnUSB);
+  //usbMIDI.setHandleNoteOff(handleNoteOffUSB);
+  //usbMIDI.setHandleProgramChange(handleProgramChangeUSB);
   usbMIDI.setHandleControlChange(handleControlChange);
 
  
@@ -227,9 +227,28 @@ void loop() {
     }
 
   }
-  MIDI.read(); // read and discard any incoming MIDI messages
-  usbMIDI.read();
-  delay(5);
+
+
+  if (MIDI.read())
+    {
+        // Thru on A has already pushed the input message to out A.
+        // Forward the message to out B as well.
+        usbMIDI.send(MIDI.getType(),
+                   MIDI.getData1(),
+                   MIDI.getData2(),
+                   MIDI.getChannel());
+    }
+
+    if (usbMIDI.read())
+    {
+        // Thru on B has already pushed the input message to out B.
+        // Forward the message to out A as well.
+        MIDI.send(usbMIDI.getType(),
+                   usbMIDI.getData1(),
+                   usbMIDI.getData2(),
+                   usbMIDI.getChannel());
+    }
+
 }
 
 void doCalibrate(){
