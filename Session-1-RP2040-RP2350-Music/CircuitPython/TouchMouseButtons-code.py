@@ -73,9 +73,9 @@ class TouchButton:
 # ======================================
 
 buttons = [
-    TouchButton(board.GP0, Mouse.LEFT_BUTTON),
-    TouchButton(board.GP1, Mouse.RIGHT_BUTTON),
-    TouchButton(board.GP2, Mouse.MIDDLE_BUTTON),
+    TouchButton(board.GP2, Mouse.LEFT_BUTTON),
+    TouchButton(board.GP3, Mouse.RIGHT_BUTTON),
+    TouchButton(board.GP4, Mouse.MIDDLE_BUTTON),
 ]
 
 # ======================================
